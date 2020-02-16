@@ -1,0 +1,43 @@
+﻿<Window x:Name="Main_GUI" x:Class="Project1_Group_38.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project1_Group_38"
+        mc:Ignorable="d"
+        Title="City Statistics - Project 1 - Group 38" Height="477" Width="1133" WindowStartupLocation="CenterScreen" FontFamily="Arial" FontSize="14" VerticalAlignment="Top">
+    <Grid x:Name="Main_Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="ToolBar_Row" ForceCursor="True" ToolTip="Choose a tool"/>
+            <RowDefinition x:Name="CityName_Row"/>
+            <RowDefinition x:Name="Province_Row"/>
+            <RowDefinition x:Name="Map_Row"/>
+            <RowDefinition x:Name="StausBar_Row"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="400" Width="25*"/>
+            <ColumnDefinition Width="372*"/>
+            <ColumnDefinition Width="397*"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar x:Name="toolBar" Height="75" VerticalAlignment="Top" Width="1127" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,-0.333,0">
+            <Button x:Name="BackButton" Content="&lt;" Height="75" VerticalAlignment="Top" Width="154" FontSize="48" FontWeight="Bold" Margin="0,0,0,-5" Cursor="Hand" ClickMode="Press" Click="Back" AutomationProperties.HelpText="Previous" ToolTip="Use Left Arrow Key to scroll fast" KeyDown="Back_KeyDown"/>
+            <Button x:Name="ForwardButton" Content="&gt;" Height="75" VerticalAlignment="Top" Width="154" FontSize="48" Margin="0,0,0,-5" Cursor="Hand" Click="Forward" ClickMode="Press" AutomationProperties.HelpText="Next" FontWeight="Bold" ToolTip="Use Right Arrow Key to scroll fast" KeyDown="Forward_KeyDown"/>
+            <Button x:Name="btn_File" Content="Choose File" Height="70" VerticalAlignment="Top" Width="155" FontSize="22" Cursor="Hand" IsDefault="True" Click="ChooseFile" ToolTip="Open a Statistics File"/>
+            <Button x:Name="ProvinceStats" Content="Province Stats" Height="70" VerticalAlignment="Top" Width="136" Click="ProvinceStats_Click" FontSize="20" ToolTip="See Province Statistics" Cursor="Hand"/>
+            <Button x:Name="CityStats" Content="City Stats" Height="70" VerticalAlignment="Top" Width="144" FontSize="20" Click="CityStats_Click" ToolTip="See City Statistics" Cursor="Hand"/>
+            <ComboBox x:Name="searchBox" Height="70" Margin="0" VerticalAlignment="Top" Width="350" FontSize="24" SelectionChanged="searchBoxChange"/>
+        </ToolBar>
+        <StatusBar x:Name="Status_Bar" HorizontalAlignment="Left" Height="75" Margin="0,74.333,-0.333,0" Grid.Row="4" VerticalAlignment="Top" Width="1127" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <Label x:Name="lbl_Status" Height="65" Width="782" FontSize="36"/>
+        </StatusBar>
+        <Label x:Name="lbl_CityName" Content="City Name: " HorizontalAlignment="Left" Margin="10,5.333,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" Height="59" FontSize="22" AutomationProperties.Name="lbl_CityName" Grid.ColumnSpan="2"/>
+        <Label x:Name="act_CityName" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="10.333,10.333,0,0" Grid.Row="1" VerticalAlignment="Top" Height="54" Width="376" FontSize="22" AutomationProperties.Name="act_CityName"/>
+        <Label x:Name="lbl_Province" Content="Province:" HorizontalAlignment="Left" Margin="10,9.667,0,0" Grid.Row="2" VerticalAlignment="Top" Height="55" Width="347" FontSize="22" Grid.ColumnSpan="2"/>
+        <Label x:Name="act_Province" Content="&#xD;&#xA;" Grid.Column="2" HorizontalAlignment="Left" Margin="10.333,9.667,0,0" Grid.Row="2" VerticalAlignment="Top" Height="55" Width="376" FontSize="22"/>
+        <Label x:Name="lbl_Population" Content="Population:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="55" Width="377" FontSize="22" Grid.ColumnSpan="2"/>
+        <Label x:Name="act_Population" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="10.333,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="55" Width="376" FontSize="22"/>
+        <Label x:Name="label" Content="Location:" HorizontalAlignment="Left" Margin="10,10.333,0,0" Grid.Row="4" VerticalAlignment="Top" Height="54" Width="377" FontSize="22" Grid.ColumnSpan="2"/>
+        <Label x:Name="act_Location" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="10.333,10.333,0,0" Grid.Row="4" VerticalAlignment="Top" Height="54" Width="376" FontSize="22"/>
+    </Grid>
+</Window>
