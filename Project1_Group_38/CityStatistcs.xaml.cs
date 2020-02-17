@@ -77,6 +77,13 @@ namespace Project1_Group_38
                 lbl_CityPop.Content = "Biggest: "+ bigcity.CityName + "(" + bigcity.Population.ToString("N", CultureInfo.InvariantCulture)+")" + "\n"+
                 "Smallest: " + smallcity.CityName + "(" + smallcity.Population.ToString("N",CultureInfo.InvariantCulture) + ")";
             }//End if
+
+            //Clean cities list on new selection
+            if(provinceCities.Items.Count > 0)
+            {
+                provinceCities.Items.Clear();
+                lblCityCount.Content = "";
+            }//End if
         }//End of ListBox Event
 
         private void lbxProvince2_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -115,7 +122,56 @@ namespace Project1_Group_38
                 "Smallest: " + smallcity1.CityName + "(" + smallcity1.Population.ToString("N", CultureInfo.InvariantCulture) + ") "
                 + "\n"+p2 + "'s Biggest: " + bigcity2.CityName + "(" + bigcity2.Population.ToString("N", CultureInfo.InvariantCulture) + ")" + "\n" +
                 "Smallest: " + smallcity2.CityName + "(" + smallcity2.Population.ToString("N", CultureInfo.InvariantCulture) + ")";
+
+                lbl_CityPop.ToolTip = p1 + "'s Biggest: " + bigcity1.CityName + "(" + bigcity1.Population.ToString("N", CultureInfo.InvariantCulture) + ")" + "\n" +
+                "Smallest: " + smallcity1.CityName + "(" + smallcity1.Population.ToString("N", CultureInfo.InvariantCulture) + ") "
+                + "\n" + p2 + "'s Biggest: " + bigcity2.CityName + "(" + bigcity2.Population.ToString("N", CultureInfo.InvariantCulture) + ")" + "\n" +
+                "Smallest: " + smallcity2.CityName + "(" + smallcity2.Population.ToString("N", CultureInfo.InvariantCulture) + ")";
             }//End if
         }//End of Compare
+
+        private void listCities(object sender, RoutedEventArgs e)
+        {
+            int citycount = 0;
+
+            if (lbx_Province1.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < citystats.CityCatalogue.Count(); i++)
+                {
+                    if (citystats.CityCatalogue.ElementAt(i).Value.Province == lbx_Province1.SelectedItem.ToString())
+                    {
+                        citycount += 1;
+                        provinceCities.Items.Add(citystats.CityCatalogue.ElementAt(i).Value.CityName);
+                    }//End if
+                }//End for
+                lblCityCount.Content = "# of Cities: " + citycount;
+                provinceCities.ToolTip = "Cites of "+ lbx_Province1.SelectedItem.ToString();
+            }//End if
+        }//End of ListCities EVENT
+
+        private void sumPop(object sender, RoutedEventArgs e)
+        {
+            long population = 0;
+
+            if (lbx_Province1.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < citystats.CityCatalogue.Count(); i++)
+                {
+                    if (citystats.CityCatalogue.ElementAt(i).Value.Province == lbx_Province1.SelectedItem.ToString())
+                    {
+                        population += citystats.CityCatalogue.ElementAt(i).Value.Population;
+                    }//End if
+                }//End for
+                lblPopulation.Content = "Population of \n" + lbx_Province1.SelectedItem.ToString() + ": \n" + population.ToString("N", CultureInfo.InvariantCulture);
+                lblPopulation.ToolTip = "Population of \n" + lbx_Province1.SelectedItem.ToString() + ": " + population.ToString("N", CultureInfo.InvariantCulture);
+            }//End if
+        }//End of sumPop EVENT
+
+        private void seeMap(object sender, RoutedEventArgs e)
+        {
+            //Launch Map Frame
+            Map mp = new Map(citystats);
+            mp.Show();
+        }//End of seeMap EVENT
     }//End of class
 }//End of namespace

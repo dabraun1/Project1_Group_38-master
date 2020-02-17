@@ -22,14 +22,14 @@ namespace Project1_Group_38
         /// Construct Statics object
         /// </summary>
         /// <param name="dict"></param>
-        public Statistics(Dictionary<string,CityInfo> dict)
+        public Statistics(Dictionary<string, CityInfo> dict)
         {
             CityCatalogue = dict;
 
             CityCatalogue.Remove("");
 
             //Debug
-            for(int i = 0; i < CityCatalogue.Count(); i++)
+            for (int i = 0; i < CityCatalogue.Count(); i++)
             {
                 Debug.WriteLine("City #" + i + " " + CityCatalogue.ElementAt(i).Value.CityName);
             }//End for
@@ -47,7 +47,7 @@ namespace Project1_Group_38
             CityInfo err = new CityInfo();
             err.CityName = "Does not exist!";
 
-            if(CityCatalogue.ContainsKey(n))
+            if (CityCatalogue.ContainsKey(n))
             {
                 return CityCatalogue[n];
             }//End if
@@ -66,11 +66,11 @@ namespace Project1_Group_38
         {
             CityInfo bigcity = new CityInfo();
 
-            for(int i = 0; i < CityCatalogue.Count; i++)
+            for (int i = 0; i < CityCatalogue.Count; i++)
             {
-                if(CityCatalogue.ElementAt(i).Value.Province == n)
+                if (CityCatalogue.ElementAt(i).Value.Province == n)
                 {
-                    if(bigcity != CityCatalogue.ElementAt(i).Value
+                    if (bigcity != CityCatalogue.ElementAt(i).Value
                     && CityCatalogue.ElementAt(i).Value.Population >
                     bigcity.Population)
                     {
@@ -102,7 +102,7 @@ namespace Project1_Group_38
                     if (CityCatalogue.ElementAt(i).Value.Population > 0)
                     {
                         //Is Different than existing
-                        if (CityCatalogue.ElementAt(i).Value !=                smallcity)
+                        if (CityCatalogue.ElementAt(i).Value != smallcity)
                         {
                             //Is less than existing
                             if (CityCatalogue.ElementAt(i).Value.Population < smallcity.Population)
@@ -128,7 +128,7 @@ namespace Project1_Group_38
         /// <returns></returns>
         public CityInfo ComparePopulation(CityInfo a, CityInfo b)
         {
-            if(a.Population > b.Population)
+            if (a.Population > b.Population)
             {
                 return a;
             }//End if
@@ -142,6 +142,22 @@ namespace Project1_Group_38
 
         #region ProvinceMethods
 
+        public List<string> listProvinces()
+        {
+            List<string> provs = new List<string>();
+
+            for(int i = 0; i < CityCatalogue.Count(); i++)
+            {
+                //Add if does not contain
+                if(!provs.Contains(CityCatalogue.ElementAt(i).Value.Province))
+                {
+                    provs.Add(CityCatalogue.ElementAt(i).Value.Province);
+                }//End if
+            }//End for
+
+            provs.Sort();
+            return provs;
+        }//End of listProvinces()
         #endregion
     }//End of class
 }//End of namespace

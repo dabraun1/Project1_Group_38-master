@@ -160,12 +160,14 @@ namespace Project1_Group_38
 
         private void ProvinceStats_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+            //Launch Province Statistics Frame
+            ProvinceSatistics ps = new ProvinceSatistics(stat);
+            ps.Show();
+        }//End of ProvinceStats_Click EVENT
 
         private void CityStats_Click(object sender, RoutedEventArgs e)
         {
-            //Launch Statistics Frame
+            //Launch City Statistics Frame
             CityStatistcs cs = new CityStatistcs(stat);
             cs.Show();
         }//End of CityStats_Click()
